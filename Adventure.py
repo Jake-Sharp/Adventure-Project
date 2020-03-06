@@ -10,11 +10,11 @@ FLASHLIGHT = False
 BATTERIES = False
 
 #Counters
-int DOORCOUNTER = 0
-int FLASHLIFE = 30
-int GUNLIFE = 6
-int PLAYERLIFE = 50
-int CANDYLIFE = 70
+DOORCOUNTER = 0
+FLASHLIFE = 30
+GUNLIFE = 6
+PLAYERLIFE = 50
+CANDYLIFE = 70
 
 # Introduction
 def introduction():
@@ -121,8 +121,7 @@ def choice3Doors():
 
 # Player instant death
 def candyman():
-    int DOORCOUNTER
-    global FLASHLIGHT
+    global FLASHLIGHT, DOORCOUNTER
     print("You hear a scurry from behind, but it's too fast and too dark to see")
     print("The sound comes from all around, as it circles you, defensless as you are")
     print("I havent eaten in a long time... you seem to come right in time for a SNACK!")
@@ -149,7 +148,7 @@ def candyman():
 
 # Counter +1 (How you Win)
 def choiceUP():
-    int DOORCOUNTER
+    global DOORCOUNTER
     if DOORCOUNTER = 47:
         print("A creak came from above, and a door slowely drew open...")
         roofTop()
@@ -173,7 +172,7 @@ def choiceUP():
 
 # Counter -1 (How you Lose)
 def choiceDown():
-int DOORCOUNTER
+global DOORCOUNTER
 if DOORCOUNTER < -1:
     print("A bell rang above, and a draft of wind streamed by, like a door was opened elsewhere...")
     candyman()
@@ -185,7 +184,7 @@ elif DOORCOUNTER > -1:
 
 # Counter Repeat (Common Loop)
 def doorChoice():
-int DOORCOUNTER
+global DOORCOUNTER
 FLASHLIFE -=1
 
     FLASHLIFE += 15
@@ -215,12 +214,12 @@ FLASHLIFE -=1
         
 # Endgame
 def ending():
+    global DOORCOUNTER
   print("The CANDY MAN found you, and ate you... you are not the lst of his many victims.")
   print("Your score was: " + (DOORCOUNTER) + "! Better luck next time!")
 
 # Item Handler
-   global MATRESS, LIGHTSWITCH, FLASHLIGHT, POTION, HANDGUN, PARACHUTE
-   int DOORCOUNTER
+   global MATRESS, LIGHTSWITCH, FLASHLIGHT, POTION, HANDGUN, PARACHUTE, DOORCOUNTER, FLASHLIFE, GUNLIFE
     if DOORCOUNTER >= 40 and GUNLIFE > 0:
         Print("You found an Item!")
         HANDGUN == True
@@ -246,6 +245,7 @@ def ending():
     
 # rooftop
 def rooftop():
+    global MATRESS, LIGHTSWITCH, FLASHLIGHT, POTION, HANDGUN, PARACHUTE, DOORCOUNTER, FLASHLIFE, GUNLIFE
     print("You Entered through the single door above you, and felt fresh air for the first time in hours.")
     print("The roof looked like a junkyard-- but for killing machines...")
     print("You hear a screech, like the one from earlier, and the CANDY MAN pounces on top of you
@@ -270,36 +270,40 @@ def rooftop():
                 finish()
             else:
                 ending()
-                
-        if doorChoice == '2':
-            print("I'll Jump off the front!!")
-            if MATRESS == True:
-                finish()
-            else:
-                ending()
+       
          
-        if doorChoice == '3':
+        if doorChoice == '2':
             print("I Wonder if the Lights Worked...")
             if LIGHTSWITCH == True:
                 ending()
             else:
                finish()
-        
-        if doorChoice == '4':
-            print("I'll Jump off the front!!")
-            if HANDGUN == True and CANDYLIFE <=10:
+
+                        
+        if doorChoice == '3':
+            print("I'll take one for the Team")
+            if HANDGUN == True and GUNLIFE < 0 and CANDYLIFE <=10:
                 finish()
             else:
                 ending()
+        
             
-        if doorChoice == '5':
+        if doorChoice == '4':
             print("I have a parachute for a Reason!")
             if Parachute == True and PLAYERLIFE > 40:
                 finish()
             else:
                 ending()
+
+                 if doorChoice == '5':
+            print("I believe in Science! NOT GOD!")
+            if POTION == True:
+                print("Too Bad the Potion was just bleach with food coloring...")
+                ending()
+            else:
+                finish()
         
-        if doorChoice == '36:
+        if doorChoice == '6':
             print("I can and will kill you, you son of a bitch")
              if CANDYLIFE < 10 and FLASHLIFE > 20 or GUNLIFE > 4:
                  finish()
